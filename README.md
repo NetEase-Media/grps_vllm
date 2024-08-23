@@ -1,6 +1,7 @@
-# vllm
+# grps-vllm
 
-使用```LLMEngine Api```实现```vllm```推理后端，采用自定义```http```格式进行服务部署，同```vllm-api-server```
+[grps](https://github.com/NetEase-Media/grps)接入[vllm](https://docs.vllm.ai/en/stable/)使用```LLMEngine Api```
+实现LLM服务，同```vllm-api-server```
 相比较服务性能有所提升。后续会支持```OpenAI```接口协议，包含```chat```与```function call```。
 
 1. [工程结构](#1-工程结构)

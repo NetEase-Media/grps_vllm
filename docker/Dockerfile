@@ -25,4 +25,4 @@ COPY --from=build /my_grps/server.mar /my_grps/server.mar
 ENV LANG C.UTF-8
 
 # Can use --timeout (s) to set the timeout time, default is 300s.
-CMD ["/bin/sh", "-c", "grpst start server.mar"]
+CMD ["/bin/sh", "-c", "grpst start server.mar --timeout 1200"]

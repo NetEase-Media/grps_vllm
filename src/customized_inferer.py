@@ -84,6 +84,7 @@ class VllmInferer(ModelInferer):
             Exception: If load failed, can raise exception and exception will be caught by server and show error message
             to user when start service.
         """
+        clogger.info('vllm inferer loading...')
         self._engine = LLMEngine.from_engine_args(self._engine_args)
         self._engine.log_stats = False
         self._worker_thread = threading.Thread(target=self.worker_fn)

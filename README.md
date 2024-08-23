@@ -46,8 +46,10 @@ inferer_args: # more args of model inferer.
 # 跳过单测直接构建
 grpst archive . --skip_unittest
 
-# 部署，超时时间可以设置大一些，下载模型需要时间，如600s
-grpst start ./server.mar --timeout 600
+# 部署，超时时间可以设置大一些，下载模型需要时间，如1200s
+# 首次构建完后，修改配置后可以直接启动服务无需重新构建，通过--inference_conf以及--server_conf参数指定.
+# grpst start --inference_conf=conf/inference.yml --server_conf=conf/server.yml
+grpst start ./server.mar --timeout 1200
 
 # 查看部署状态，可以看到端口（HTTP,RPC）、服务名、进程ID、部署路径
 grpst ps

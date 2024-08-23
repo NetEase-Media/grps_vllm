@@ -1,0 +1,26 @@
+models:
+  - name: your_model
+    version: 1.0.0
+    device: auto
+    inferer_type: customized # only support `torch` (torch script model format), `tensorflow` (saved model format), `tensorrt` (tensorrt engine) or `customized` now.
+    inferer_name: vllm # customized model inferer name that has registered in src/customized_inferer. Not none when inferer_type is `customized`.
+    inferer_path: # path of model inferer.
+    inferer_args: # more args of model inferer.
+      model: THUDM/chatglm3-6b
+      trust_remote_code: true
+      dtype: float16
+      tensor_parallel_size: 1
+      gpu_memory_utilization: 0.9
+      device: auto
+    converter_type: none # only support `torch` (torch tensor converter), `tensorflow` (tf tensor converter), `tensorrt` (trt tensor converter), `customized`  or `none`(no converter mode) now.
+    converter_name: # converter name that has registered in src/customized_converter.py. Not none when converter_type is `customized`.
+    converter_path: # path of converter.
+    converter_args: # more args of converter.
+
+dag:
+  type: sequential # only support `sequential` now.
+  name: your_dag # dag name.
+  nodes: # sequential mode will run node in the order of nodes.
+    - name: node-1
+      type: model # only support `model` now.
+      model: your_model-1.0.0  # model(name-version format) that has been declared in models.

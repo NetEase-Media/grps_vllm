@@ -8,7 +8,7 @@ models:
     inferer_args: # more args of model inferer.
       model: THUDM/chatglm3-6b
       trust_remote_code: true
-      dtype: float16
+      dtype: bfloat16
       tensor_parallel_size: 1
       gpu_memory_utilization: 0.9
       device: auto

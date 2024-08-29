@@ -1,11 +1,10 @@
 # Customized deep learning model inferer. Including model load and model infer.
-import json
 import threading
 
 from grps_framework.context.context import GrpsContext
-from grps_framework.logger.logger import clogger
-from grps_framework.monitor.monitor import app_monitor
+from grps_framework.logger.logger import logger
 from grps_framework.model_infer.inferer import inferer_register, ModelInferer
+from grps_framework.monitor.monitor import app_monitor
 from vllm import EngineArgs, LLMEngine
 from vllm.sampling_params import SamplingParams
 from vllm.utils import random_uuid
@@ -84,13 +83,13 @@ class VllmInferer(ModelInferer):
             Exception: If load failed, can raise exception and exception will be caught by server and show error message
             to user when start service.
         """
-        clogger.info('vllm inferer loading...')
+        logger.info('vllm inferer loading...')
         self._engine = LLMEngine.from_engine_args(self._engine_args)
         self._engine.log_stats = False
         self._worker_thread = threading.Thread(target=self.worker_fn)
         self._worker_thread.daemon = True
         self._worker_thread.start()
-        clogger.info('vllm inferer load, engine_args: {}'.format(self._engine_args))
+        logger.info('vllm inferer load, engine_args: {}'.format(self._engine_args))
         return True
 
     def worker_fn(self):
